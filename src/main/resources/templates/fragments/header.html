@@ -3,8 +3,28 @@
 <head>
 </head>
 <body>
-    <div th:fragment="header">
-	    <h1>this is the header</h1>
-    </div>
+	<div th:fragment="header" class="top-bar">
+	  <div class="top-bar-left">
+	    <ul class="dropdown menu" data-dropdown-menu="">
+	      <li class="menu-text">weadu</li>
+	      <li>
+	        <a href="#">Projekte</a>
+	        <ul class="menu vertical">
+	          <li><a href="#">Projekt 1</a></li>
+	          <li><a href="#">Projekt 2</a></li>
+	          <li><a href="#">Projekt 3</a></li>
+	        </ul>
+	      </li>
+	      <li><a href="#">Two</a></li>
+	      <li><a href="#">Three</a></li>
+	    </ul>
+	  </div>
+	  <div class="top-bar-right">
+	    <ul class="menu">
+	      <li><input type="search" placeholder="Search" /></li>
+	      <li><button type="button" class="button">Search</button></li>
+	    </ul>
+	  </div>
+	</div>
 </body>
 </html>
