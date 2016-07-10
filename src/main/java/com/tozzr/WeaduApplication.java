@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.tozzr.domain.CustomerRequirementSpecification;
 import com.tozzr.domain.Project;
 import com.tozzr.domain.ProjectRepository;
 
@@ -19,6 +20,7 @@ public class WeaduApplication {
 	public CommandLineRunner demo(ProjectRepository repository) {
 		return (args) -> {
 			Project pr = new Project("RMT", "Requirements Management Tool");
+			pr.getCrs().add(new CustomerRequirementSpecification("CRS001", "Projekte", pr));
 			repository.save(pr);
 		};
 	}

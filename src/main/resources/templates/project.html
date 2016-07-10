@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body layout:fragment="content">
-	<h1 th:text="${project.name}">project name</h1>
+	<h3 th:text="${project.name} + ' (' + ${project.key} + ')'">project name</h3>
     <table class="hover">
 	  <thead>
 	    <tr>
@@ -20,6 +20,20 @@
 	    </tr>
 	  </thead>
 	  <tbody>
+	  	<tr th:each="crs : ${project.crs}">
+	      <td><a th:href="@{/projects/{id}/crs/{crsId}(id=${project.id},crsId=123)}">CRS001</a></td>
+	      <td th:text="${crs.name}">CRS name</td>
+	      <td>Das System muss mehre Anforderungen in Projekten gruppiert erfassen können.</td>
+	      <td>
+	      	<ul>
+	      		<li>Projekt 1</li>
+	      		<li>...</li>
+	      		<li>Projekt N</li>
+	      	</ul>
+	      </td>
+	      <td>muss</td>
+	      <td>-</td>
+	    </tr>
 	    <tr>
 	      <td>CRS001</td>
 	      <td>Projekte</td>

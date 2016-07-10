@@ -1,11 +1,15 @@
 package com.tozzr.domain;
 
 import java.util.Date;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Project {
@@ -18,6 +22,10 @@ public class Project {
     private Date begin;
     private Date end;
 
+    @OneToMany(mappedBy = "project")
+    @OrderBy("key")
+    private SortedSet<CustomerRequirementSpecification> crs = new TreeSet<CustomerRequirementSpecification>();
+    		
     protected Project() {}
 
     public Project(String key, String name) {
@@ -63,6 +71,14 @@ public class Project {
 
 	public void setEnd(Date end) {
 		this.end = end;
+	}
+	
+	public SortedSet<CustomerRequirementSpecification> getCrs() {
+		return crs;
+	}
+
+	public void setCrs(SortedSet<CustomerRequirementSpecification> crs) {
+		this.crs = crs;
 	}
 
 	@Override

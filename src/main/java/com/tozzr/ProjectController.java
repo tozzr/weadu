@@ -29,10 +29,15 @@ public class ProjectController {
         return "projects";
     }
 	
-    @RequestMapping(value="{id}", method=GET)
-    public String specs(@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value="/{id}", method=GET)
+    public String project(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("project", projectRepository.findOne(id));
         return "project";
     }
 
+    @RequestMapping(value="/{id}/specs", method=GET)
+    public String specs(@PathVariable("id") Long id, Model model) {
+    	model.addAttribute("project", projectRepository.findOne(id));
+        return "project";
+    }
 }
