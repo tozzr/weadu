@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+    <title>index page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+   <h3 th:text="${project.name} + ' (' + ${project.key} + ')'">project name</h3>
+   <form method="post">
+     <div class="row">
+       <div class="small-1 columns">
+         <label>key</label>
+       </div>
+       <div class="small-11 columns">
+         <input th:field="${spec.key}" />
+       </div>
+     </div>
+     <div class="row">
+       <div class="small-1 columns">
+         <label>name</label>
+       </div>
+       <div class="small-11 columns">
+         <input th:field="${spec.name}" />
+       </div>
+     </div>
+     <div class="row">
+       <div class="small-1 columns">
+         <label>text</label>
+       </div>
+       <div class="small-11 columns">
+         <input th:field="${spec.text}" />
+       </div>
+     </div>
+     <div class="row">
+       <div class="small-1 columns">
+         <label></label>
+       </div>
+       <div class="small-11 columns">
+         <button class="regular">submit</button>
+       </div>
+     </div>
+   </form>
+</body>
+</html>

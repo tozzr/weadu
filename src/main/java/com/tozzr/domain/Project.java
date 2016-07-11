@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,18 +23,20 @@ public class Project {
     private Date begin;
     private Date end;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @OrderBy("key")
-    private SortedSet<CustomerRequirementSpecification> crs = new TreeSet<CustomerRequirementSpecification>();
-    		
-    protected Project() {}
+    private SortedSet<Specification> specs = new TreeSet<Specification>();
 
-    public Project(String key, String name) {
-    	this.key = key;
-        this.name = name;
+    protected Project() {
     }
 
-    public long getId() {
+	public Project(String key, String name) {
+		super();
+		this.key = key;
+		this.name = name;
+	}
+
+	public long getId() {
 		return id;
 	}
 
@@ -72,21 +75,13 @@ public class Project {
 	public void setEnd(Date end) {
 		this.end = end;
 	}
+
+	public SortedSet<Specification> getSpecs() {
+		return specs;
+	}
+
+	public void setSpecs(SortedSet<Specification> specs) {
+		this.specs = specs;
+	}
 	
-	public SortedSet<CustomerRequirementSpecification> getCrs() {
-		return crs;
-	}
-
-	public void setCrs(SortedSet<CustomerRequirementSpecification> crs) {
-		this.crs = crs;
-	}
-
-	@Override
-    public String toString() {
-        return String.format(
-                "Project[id=%d, key='%s', name='%s']",
-                id, key, name);
-    }
-
 }
-
