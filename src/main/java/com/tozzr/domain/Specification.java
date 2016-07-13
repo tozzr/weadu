@@ -6,13 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 @Entity
 @Data
-public class Specification implements Comparable<Specification> {
+public class Specification {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -21,7 +22,6 @@ public class Specification implements Comparable<Specification> {
 	@NotNull
     private String key;
     
-	private String name;
     private String text;
     private String examples;
     
@@ -32,7 +32,10 @@ public class Specification implements Comparable<Specification> {
     @ManyToOne
     private Project project;
     
-    protected Specification() {
+    @OneToOne
+    private Specification next;
+    
+    public Specification() {
 	}
     
     public Specification(String key, Project project) {
@@ -40,9 +43,12 @@ public class Specification implements Comparable<Specification> {
     	this.project = project;
     }
 
-    @Override
-	public int compareTo(Specification other) {
-		return getKey().compareTo(other.getKey());
+    public static Specification version(Specification spec) {
+		Specification s = new Specification(spec.getKey(), spec.getProject());
+		s.setText(spec.getText());
+		s.setType(spec.getType());
+		spec.setNext(s);
+		return s;
 	}
-	
+
 }

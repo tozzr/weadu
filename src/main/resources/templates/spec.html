@@ -8,21 +8,13 @@
 </head>
 <body layout:fragment="content">
    <h3 th:text="${project.name} + ' (' + ${project.key} + ')'">project name</h3>
-   <form method="post">
+   <form method="post" th:object="${spec}">
      <div class="row">
        <div class="small-1 columns">
          <label>key</label>
        </div>
        <div class="small-11 columns">
-         <input th:field="${spec.key}" />
-       </div>
-     </div>
-     <div class="row">
-       <div class="small-1 columns">
-         <label>name</label>
-       </div>
-       <div class="small-11 columns">
-         <input th:field="${spec.name}" />
+         <input th:field="*{key}" />
        </div>
      </div>
      <div class="row">
@@ -30,15 +22,18 @@
          <label>text</label>
        </div>
        <div class="small-11 columns">
-         <input th:field="${spec.text}" />
+         <input th:field="${spec.text}" class="small-12" />
        </div>
      </div>
      <div class="row">
        <div class="small-1 columns">
-         <label></label>
+         <label>&nbsp;</label>
        </div>
-       <div class="small-11 columns">
-         <button class="regular">submit</button>
+       <div class="small-1 columns">
+         <button type="submit" class="button">save</button>
+       </div>
+       <div class="small-10 columns">
+         <button type="button" class="button">new version</button>
        </div>
      </div>
    </form>

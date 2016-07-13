@@ -1,8 +1,8 @@
 package com.tozzr.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,9 +23,9 @@ public class Project {
     private Date begin;
     private Date end;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("key")
-    private SortedSet<Specification> specs = new TreeSet<Specification>();
+    private List<Specification> specs = new ArrayList<>();
 
     protected Project() {
     }
@@ -76,12 +76,12 @@ public class Project {
 		this.end = end;
 	}
 
-	public SortedSet<Specification> getSpecs() {
+	public List<Specification> getSpecs() {
 		return specs;
 	}
 
-	public void setSpecs(SortedSet<Specification> specs) {
+	public void setSpecs(List<Specification> specs) {
 		this.specs = specs;
 	}
-	
+
 }
